@@ -79,7 +79,7 @@ function getDataFromServer(){
     const firstEle = pagination_div.children[0].value;
     console.log('first ele',firstEle);
 
-    axios.get(`http://localhost:3000/get-all-products?page=${firstEle}`)
+    axios.get(`http://65.2.166.123/get-all-products?page=${firstEle}`)
     .then((products) => {
 
         products_length = products.data.length;
@@ -110,7 +110,7 @@ products.addEventListener('click',(event)=>{
         //console.log(productId);
 
         // storing the data in database through axios
-        axios.post(`http://localhost:3000/add-to-cart-out/${productId}`)
+        axios.post(`http://65.2.166.123/add-to-cart-out/${productId}`)
         .then((res)=> {
             //console.log(res)
         })
@@ -153,7 +153,7 @@ cart_items_parent.addEventListener('click',(e) => {
     if(e.target.className ==='crt_rmv_btn'){
         remove_prod_id=e.target.id;
     }
-    axios.post('http://localhost:3000/delete-cart-product-out',{id:remove_prod_id})
+    axios.post('http://65.2.166.123/delete-cart-product-out',{id:remove_prod_id})
     .then(result =>{
         //console.log(result.status);
         display();  // refresh the cart model
@@ -168,7 +168,7 @@ function display(){
 
     //console.log(parent, parent.innerText);
 
-    axios.get(`http://localhost:3000/cart-out`)
+    axios.get(`http://65.2.166.123/cart-out`)
     .then((result) => {
         //console.log(result.data);
 
@@ -217,7 +217,7 @@ function display(){
 const orderNow = document.getElementById('cart_buy_all');
 //console.log(orderNow);
 orderNow.addEventListener('click',() => {
-    axios.post('http://localhost:3000/order-now')
+    axios.post('http://65.2.166.123/order-now')
     .then(res => {
         console.log('order now button clicked');
         console.log(res);
@@ -255,7 +255,7 @@ orderNow.addEventListener('click',() => {
 function showingOrderItems(){
     let orderItems_container = document.getElementById('orders_items');
     
-    axios.get('http://localhost:3000/get-all-order-items')
+    axios.get('http://65.2.166.123/get-all-order-items')
     .then(orderItems =>{
         console.log(orderItems);
         orderItems.data.forEach(order =>{
